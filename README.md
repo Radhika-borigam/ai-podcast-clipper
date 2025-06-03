@@ -46,33 +46,22 @@ Edit
 git clone --recurse-submodules https://github.com/Radhika-borigam/ai-podcast-clipper-saas.git
 🧩 Backend Setup
 🔧 Setup Python Environment (Python 3.12 recommended)
-bash
-Copy
-Edit
 cd ai-podcast-clipper-backend
 python -m venv venv
 source venv/bin/activate  # Use `venv\Scripts\activate` on Windows
 pip install -r requirements.txt
 🚀 Modal Setup
-bash
-Copy
-Edit
 modal setup
 modal run main.py         # Test run
 modal deploy main.py      # Deploy the backend
 🎨 Frontend Setup
-bash
-Copy
-Edit
 cd ai-podcast-clipper-frontend
 npm install
 npm run dev               # Starts on http://localhost:3000
 📊 Queue (Inngest)
 To run local development server for queue handling:
 
-bash
-Copy
-Edit
+
 cd ai-podcast-clipper-frontend
 npm run inngest-dev
 ✅ Summary of Folder Structure
