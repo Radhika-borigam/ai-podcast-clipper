@@ -35,7 +35,7 @@ Follow these steps to install and set up the project.
 ### Clone the Repository
 
 ```bash
-git clone --recurse-submodules https://github.com/Andreaswt/ai-podcast-clipper-saas.git
+git clone --recurse-submodules https://github.com/Radhika-borigam/ai-podcast-clipper-saas.git
 ```
 
 ### Install Python
