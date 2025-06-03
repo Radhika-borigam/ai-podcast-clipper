@@ -1,169 +1,128 @@
-# AI Podcast Clipper
+🎙️ AI Podcast Clipper
+Created by Radhika Borigam
+🔗 GitHub Repository
 
-Created by [Radhika Borigam](https://github.com/Radhika-borigam)
+🚀 Overview
+AI Podcast Clipper is an AI-powered tool that transforms long podcast episodes into engaging short clips—automatically. Built for modern creators, it uses state-of-the-art models to detect viral moments, add subtitles, crop based on active speakers, and export vertical videos ready for TikTok, YouTube Shorts, and more.
 
-[Project Repository](https://github.com/Radhika-borigam/ai-podcast-clipper)
+No manual editing. No need to scrub through hours of audio. Just upload, sit back, and let the AI do the work.
 
-## Overview
+✨ Features
+🎬 AI Viral Moment Detection — Auto-identifies engaging stories, jokes, and questions using Gemini 2.5 Pro
 
-AI Podcast Clipper is an innovative tool that transforms long-form podcasts into engaging short-form content. Using advanced AI technology, it automatically detects viral moments, adds subtitles, and optimizes clips for social media platforms. Perfect for content creators looking to repurpose their podcast content for TikTok and YouTube Shorts with minimal effort.
+🔊 Auto Subtitles — Adds accurate, synced captions powered by m-bain/whisperX
 
-Features:
+🧠 Speaker Detection — Uses Junhua-Liao/LR-ASD to track and crop based on active speaker
 
-- 🎬 Auto-detection of viral moments in podcasts (stories, questions, etc.)
-- 🔊 Automatically added subtitles on clips
-- 📝 Transcription with m-bain/whisperX
-- 🎯 Active speaker detection for video cropping with Junhua-Liao/LR-ASD
-- 📱 Clips optimized for vertical platforms (TikTok, YouTube Shorts)
-- 🎞️ GPU-accelerated video rendering with FFMPEGCV
-- 🧠 LLM-powered viral moment identification with Gemini 2.5 Pro
-- 📊 Queue system with Inngest for handling user load
-- 💳 Credit-based system
-- 💰 Stripe integration for credit pack purchases
-- 👤 User authentication system
-- 📱 Responsive Next.js web interface
-- 🎛️ Dashboard to upload podcasts and see clips
-- ⏱️ Inngest for handling long-running processes
-- ⚡ Serverless GPU processing with Modal
-- 🌐 FastAPI endpoint for podcast processing
-- 🎨 Modern UI with Tailwind CSS & Shadcn UI
+📱 Vertical Video Output — Optimized for TikTok, Instagram Reels, YouTube Shorts
 
-## Setup
+⚡ Fast Rendering — GPU-accelerated using FFMPEGCV
 
-Follow these steps to install and set up the project.
+💻 Responsive UI — Built with Next.js, Tailwind CSS, and Shadcn UI
 
-### Clone the Repository
+📊 Queue System — Handles processing flow smoothly using Inngest
 
-```bash
+👤 User Authentication — Secure sign-up/login with session handling
+
+💳 Credit-Based Access — Integrated credit system with Stripe support
+
+☁️ Serverless GPU Backend — Runs entirely on Modal for simplicity and scale
+
+🎛️ Dashboard Interface — Upload audio/video, track processing, manage clips
+
+🧠 Tech Stack
+Layer	Tools/Frameworks
+Frontend	Next.js, Tailwind CSS, Shadcn UI
+Backend	FastAPI, Modal (GPU), FFMPEGCV
+AI Models	Gemini 2.5 Pro, whisperX, LR-ASD
+Auth & Billing	Auth system + Stripe for payments
+Queue	Inngest
+
+⚙️ Getting Started
+1️⃣ Clone the Repository
+bash
+Copy
+Edit
 git clone --recurse-submodules https://github.com/Radhika-borigam/ai-podcast-clipper-saas.git
-```
-
-### Install Python
-
-Download and install Python if not already installed. Use the link below for guidance on installation:
-[Python Download](https://www.python.org/downloads/)
-
-Create a virtual environment with **Python 3.12**.
-
-### Backend
-
-Navigate to backend folder:
-
-```bash
+🧩 Backend Setup
+🔧 Setup Python Environment (Python 3.12 recommended)
+bash
+Copy
+Edit
 cd ai-podcast-clipper-backend
-```
-
-Install dependencies:
-
-```bash
+python -m venv venv
+source venv/bin/activate  # Use `venv\Scripts\activate` on Windows
 pip install -r requirements.txt
-```
-
-Clone the [LR-ASD](https://github.com/Junhua-Liao/LR-ASD) repo into the backend folder, and rename the folder asd:
-
-```bash
-git clone https://github.com/Junhua-Liao/LR-ASD.git
-```
-
-Modal setup:
-
-```bash
+🚀 Modal Setup
+bash
+Copy
+Edit
 modal setup
-```
-
-Run on Modal:
-
-```bash
-modal run main.py
-```
-
-Deploy backend:
-
-```bash
-modal deploy main.py
-```
-
-### Frontend
-
-Install dependencies:
-
-```bash
+modal run main.py         # Test run
+modal deploy main.py      # Deploy the backend
+🎨 Frontend Setup
+bash
+Copy
+Edit
 cd ai-podcast-clipper-frontend
-npm i
-```
+npm install
+npm run dev               # Starts on http://localhost:3000
+📊 Queue (Inngest)
+To run local development server for queue handling:
 
-Run:
-
-```bash
-npm run dev
-```
-
-### Queue
-
-Run the local queue development server with Inngest:
-
-```bash
+bash
+Copy
+Edit
 cd ai-podcast-clipper-frontend
 npm run inngest-dev
-```
+✅ Summary of Folder Structure
+bash
+Copy
+Edit
+ai-podcast-clipper-saas/
+├── ai-podcast-clipper-backend/     # FastAPI + Modal (AI + processing logic)
+│   └── main.py                     # Modal functions and podcast logic
+├── ai-podcast-clipper-frontend/    # Next.js web dashboard
+│   ├── pages/                      # Routes and views
+│   ├── components/                 # Reusable UI elements
+│   ├── inngest/                    # Event-based queue handling
+│   └── utils/                      # Helpers (e.g., upload, validation)
+└── README.md                       # This file
+🧪 Example Workflow
+User logs in via the frontend
 
-## AWS Setup
+Uploads a podcast episode (audio/video)
 
-CORS policy for S3 bucket:
+Backend triggers Modal + Inngest
 
-```bash
-[
-    {
-        "AllowedHeaders": [
-            "Content-Type",
-            "Content-Length",
-            "Authorization"
-        ],
-        "AllowedMethods": [
-            "PUT"
-        ],
-        "AllowedOrigins": [
-            "*"
-        ],
-        "ExposeHeaders": [
-            "ETag"
-        ],
-        "MaxAgeSeconds": 3600
-    }
-]
-```
+Viral segments are extracted and rendered with subtitles
 
-IAM user policy to upload, download and list bucket items:
+Final vertical video clips are shown on the dashboard
 
-```bash
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:ListBucket"
-            ],
-            "Resource": "[S3 ARN here]"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:GetObject",
-                "s3:PutObject"
-            ],
-            "Resource": "[S3 ARN here]/*"
-        }
-    ]
-}
-```
+Download or share directly from the interface
 
-## LLM for viral moment identification
+📜 License
+Licensed under the MIT License
 
-[Create an API key for Gemini](https://ai.google.dev/gemini-api/docs/quickstart?lang=python)
+🙌 Contributions Welcome!
+If you’d like to contribute, improve the UI, suggest new features, or fix bugs:
 
-# Videos used for testing / thumbnail
+Fork this repo
 
-[MI6 Secret Agent Talks About the World's Darkest Secrets](https://www.youtube.com/watch?v=-vMgbJ6WqN4)
+Create a new branch
 
-[Janney Sanchez | Therapy saved my life, From Rivera to Sanchez , Living in my Moms Shadow | Ep.198](https://www.youtube.com/watch?v=SOG0GmKts_I)
+Make your changes
+
+Open a pull request 🚀
+
+Let me know if you'd like help creating:
+
+📽️ A video demo script
+
+🧾 A pitch deck description
+
+📄 A Notion-based documentation version
+
+🌐 A landing page in HTML/React
+
+I'm happy to help you make this shine even more!
